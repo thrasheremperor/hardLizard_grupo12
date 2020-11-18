@@ -38,13 +38,18 @@ module.exports = {
     },
     
     contactos:function(req,res){
-        res.write(``);
+        res.write(`////////CONTACTENOS\n\n${contactos}`);
 
         res.end();
     },
-    
-    preguntasFrecuentes:function(req,res){
-        res.write(``);
+    preguntasFrecuentes: function (req, res){
+            res.write('>>>>>Preguntas Frecuentes<<<<< \n \n ');
+			res.write(`Total de preguntas: ${preguntasFrecuentes.totalDePreguntas()}\n \n`);
+			res.write('------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+			
+			preguntasFrecuentes.preguntasYRespuestas().forEach(pyc => {
+                res.write(`\n\n${pyc.faq_title}\n\n${pyc.faq_answer}\n\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n`)
+            })
 
         res.end();
     }
