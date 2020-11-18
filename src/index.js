@@ -1,8 +1,8 @@
 const homePage = require("./homePage");
 const enCartelera = require("./enCartelera");
-const masVotados = require("./masVotados");
+const masVotados = require("./masVotadas");
 const sucursales = require("./sucursales");
-const contactos = require("./contactos");
+const contactos = require("./contacto");
 const preguntasFrecuentes = require("./preguntasFrecuentes");
 
 
@@ -14,7 +14,10 @@ module.exports = {
     },
    
     enCartelera:function(req,res){
-        res.write(``);
+        res.write(`////////EN CARTELERA\n\n////////TOTAL DE PELICULAS: ${enCartelera.nPeliculas()}`);
+        enCartelera.peliculas().forEach(pelicula => {
+            res.write(`\n\n${pelicula.title.toUpperCase()}\n\nDescripcion:\n${pelicula.overview}\n\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n`)
+        })
 
         res.end();
     },
@@ -26,7 +29,10 @@ module.exports = {
     },
     
     sucursales:function(req,res){
-        res.write(``);
+        res.write(`////////NUESTRAS SALAS\n\n////////TOTAL DE SALAS: ${sucursales.nCines()}\n\n`);
+        sucursales.cines().forEach(cine => {
+            res.write(`Nombre: ${cine.name}\n\nDirección: ${cine.address}\n\nDescripcion: ${cine.description}\n\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n`)
+        });
 
         res.end();
     },
