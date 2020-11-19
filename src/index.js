@@ -8,7 +8,7 @@ const preguntasFrecuentes = require("./preguntasFrecuentes");
 
 module.exports = {
     homePage:function(req,res){
-        res.write(``);
+        res.write(`****HOME****`);
 
         res.end();
     },
@@ -23,7 +23,8 @@ module.exports = {
     },
     
     masVotadas:function(req,res){
-        res.write(``);
+        res.write(`////////MAS VOTADAS\n\n`);
+        res.write(`Total de películas: ${masVotadas.masVotadas}`)
 
         res.end();
     },
