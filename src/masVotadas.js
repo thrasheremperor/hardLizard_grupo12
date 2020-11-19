@@ -1,25 +1,26 @@
-const fs=require('fs')
-const { masVotadas } = require('.')
-const { leerJson } = require('./homePage')
+const fs = require("fs");
 
-module.exports={
-    bd:'./data/movies.JSON',
-    leerJson }
-
-let pelis= this.leerJson().movies
-
-pelis.sort(function(a,b){
-    return ((a.title<b.title)?-1:((a.title>b.title)?1:0))})
-
-let votadas=(pelis.filter(function(peli){return peli.vote_average >= 7}));
-
-totalMasVotadas : function(){
-    return votadas.length
+module.exports = {
+    bd: "./data/movies.json",
+    leerJSON: function(){
+        return JSON.parse(fs.readFileSync(this.bd,"utf-8"));
+    },
+    peliTitulos:function(){
+        let voteFilter=this.leerJSON().movies.filter(peli=>peli.vote_average>=7);
+        return voteFilter.sort(function(a, b){
+            return((a.title<b.title)?-1:((a.title>b.title)?1:0));
+        });
+    },
+    totalPelis:function(){
+        let archivo=this.leerJSON().movies.filter(peli=>peli.vote_average>=7);
+        return archivo.length;
+    },
+    peliPromedio:function(){
+        let voteFilter=this.leerJSON().movies.filter(peli=>peli.vote_average>=7);
+        let masVotes=voteFilter.map(peli=>peli.vote_average);
+        let puntajeVotes=masVotes.reduce((antes,despues)=>despues+=antes);
+        return (puntajeVotes/masVotes.length).toFixed(2);
+    },
 };
 
-let promedio=0;
-			votadas.forEach(function(votada){
-			promedio=promedio+votada.vote_average})
 
-promedio:function(){
-    return promedio/totalMasVotadas }
