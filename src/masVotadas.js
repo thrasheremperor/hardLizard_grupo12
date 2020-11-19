@@ -18,9 +18,7 @@ module.exports = {
     peliPromedio:function(){
         let voteFilter=this.leerJSON().movies.filter(peli=>peli.vote_average>=7);
         let masVotes=voteFilter.map(peli=>peli.vote_average);
-        let puntajeVotes=masVotes.reduce((antes,despues)=>despues+=antes);
+        let puntajeVotes=masVotes.reduce(function(antes,despues){ return despues+=antes});
         return (puntajeVotes/masVotes.length).toFixed(2);
     },
-};
-
-
+}

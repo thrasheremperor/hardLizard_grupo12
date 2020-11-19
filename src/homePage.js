@@ -1,6 +1,6 @@
 const fs= require('fs')
 
-module.exports={
+module.exports = {
     bd: './data/movies.json' ,
     leerJson: function(){
         return JSON.parse(fs.readFileSync(this.bd,'utf-8'))
@@ -18,7 +18,8 @@ module.exports={
         let orden = [];
         this.leerJson().movies.forEach((peli) =>{
             orden.push(peli.title);
-        })
-        return orden.sort();
+        });
+       
+         return orden.sort();
     }
 };
