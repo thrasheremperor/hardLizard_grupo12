@@ -13,7 +13,7 @@ module.exports = {
         res.end();
     },
    
-    enCartelera:function(req,res){
+    enCartelera:function(req,res){ 
         res.write(`////////EN CARTELERA\n\n////////TOTAL DE PELICULAS: ${enCartelera.nPeliculas()}`);
         enCartelera.peliculas().forEach(pelicula => {
             res.write(`\n\n${pelicula.title.toUpperCase()}\n\nDescripcion:\n${pelicula.overview}\n\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n`)
@@ -23,8 +23,11 @@ module.exports = {
     },
     
     masVotadas:function(req,res){
-        res.write(``);
-
+        res.write('MAS VOTADAS\n----------------\n\n');
+        res.write(`Total de peliculas: ${masVotados.totalPelis()}\n\nRating promedio: ${masVotados.peliPromedio()}\n\n\n`);
+        masVotados.peliTitulos().forEach(pelicula=>{
+            res.write(`Titulo: ${pelicula.title}\nRating: ${pelicula.vote_average}\nReseña: ${pelicula.overview}\n\n\n\n`);
+        });
         res.end();
     },
     
