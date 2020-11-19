@@ -1,8 +1,8 @@
 const fs= require('fs')
 
 module.exports={
-    baseDatos: './data/movies.json' ,
+    bd: './data/movies.json' ,
 leerJson:function(){
-    return JSON.parse(fs.readFileSync(this.baseDatos,'utf8'))
+    return JSON.parse(fs.readFileSync(this.bd,'utf8'))
 }
 };
