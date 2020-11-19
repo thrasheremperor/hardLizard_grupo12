@@ -18,8 +18,9 @@ module.exports = {
         let orden = [];
         this.leerJson().movies.forEach((peli) =>{
             orden.push(peli.title);
+        })
+        return orden.sort(function (a, b) {
+            return a.toLowerCase().localeCompare(b.toLowerCase()); // No importa el case sensitive
         });
-       
-         return orden.sort();
     }
 };

@@ -7,8 +7,8 @@ module.exports = {
     },
     peliTitulos:function(){
         let voteFilter=this.leerJSON().movies.filter(peli=>peli.vote_average>=7);
-        return voteFilter.sort(function(a, b){
-            return((a.title<b.title)?-1:((a.title>b.title)?1:0));
+        return voteFilter.sort(function(a,b){
+            return((a.vote_average>b.vote_average)?-1:((a.vote_average<b.vote_average)?1:0));
         });
     },
     totalPelis:function(){
@@ -18,7 +18,7 @@ module.exports = {
     peliPromedio:function(){
         let voteFilter=this.leerJSON().movies.filter(peli=>peli.vote_average>=7);
         let masVotes=voteFilter.map(peli=>peli.vote_average);
-        let puntajeVotes=masVotes.reduce(function(antes,despues){ return despues+=antes});
+        let puntajeVotes=masVotes.reduce((number,acum)=>acum+number);
         return (puntajeVotes/masVotes.length).toFixed(2);
     },
 }
